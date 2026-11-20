@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strands-revsec"
+# The version lives in strands_revsec/_version.py only; see [tool.setuptools.dynamic].
+dynamic = ["version"]
+description = "RevSec for Strands Agents: check each tool call before it runs (MCP tools against their MCP server), each prompt and tool result, and register the agent."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "RevSec / RevUp AI, Inc.", email = "hello@revupai.com" },
+]
+keywords = ["strands", "strands-agents", "hooks", "ai-agents", "ai-security", "guardrails", "mcp", "tool-calls"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+]
+dependencies = [
+    # Uses the SDK's tool checks (revsec.tools for the agent's own tools,
+    # revsec.mcp for MCP tools), content checks (revsec.checks), outcome and
+    # registration; pinned below 0.6 because it also reuses a few of the
+    # SDK's internal helpers.
+    "revsec-sdk>=0.5.0,<0.6",
+    # 1.54 adds Agent.session_id; the hooks used here (cancel_tool, model-call
+    # cancel, writable tool results) are all older. Strands brings mcp.
+    "strands-agents>=1.54,<2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-asyncio>=0.23"]
+
+[project.urls]
+Homepage = "https://revsec.app"
+Source = "https://github.com/RevUp-AI/strands-revsec"
+Issues = "https://github.com/RevUp-AI/strands-revsec/issues"
+"Start a free trial" = "https://app.revsec.app/start?from=strands"
+
+[tool.setuptools.dynamic]
+version = { attr = "strands_revsec._version.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["strands_revsec*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
