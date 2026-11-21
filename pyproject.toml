@@ -12,7 +12,7 @@ requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 authors = [
-    { name = "RevSec / RevUp AI, Inc.", email = "hello@revupai.com" },
+    { name = "RevSec / RevUp AI LLC", email = "hello@revupai.com" },
 ]
 keywords = ["strands", "strands-agents", "hooks", "ai-agents", "ai-security", "guardrails", "mcp", "tool-calls"]
 classifiers = [
@@ -40,7 +40,6 @@ dependencies = [
 test = ["pytest>=7", "pytest-asyncio>=0.23"]
 
 [project.urls]
-Homepage = "https://revsec.app"
 Source = "https://github.com/RevUp-AI/strands-revsec"
 Issues = "https://github.com/RevUp-AI/strands-revsec/issues"
 "Start a free trial" = "https://app.revsec.app/start?from=strands"
